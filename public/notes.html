@@ -61,11 +61,10 @@
 
             <h1>Ajouter une note</h1>
 
-            <form class="form-mini" method="post" action="newNote">
-
+            <form class="form-mini" method="get" action="newNote">
                 <div class="form-row">
                     <label>
-                        <select name="newNote[branche]">
+                        <select name="branche">
                             <option value="notChosen">Choisir une branche</option>
                             <option value="mathematiques">Mathématiques</option>
                             <option value="physique">Physique</option>
@@ -79,7 +78,7 @@
 
                 <div class="form-row">
                     <label>
-                        <select name="newNote[note]">
+                        <select name="note">
                             <option>Choisir une note</option>
                             <option value="1">1</option>
                             <option value="1.5">1.5</option>

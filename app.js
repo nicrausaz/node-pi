@@ -9,8 +9,8 @@ app.get('/', function (req, res) {
   res.sendfile(path.join(__dirname + '/public/index.html'))
 })
 
-app.post('/newNote', function(req, res){
-    res.send("hey");
+app.get('/newNote', function (req, res) {
+  res.send('branche: ' + req.query['branche'] + ' note: ' + req.query['note'])
 });
 
 app.listen(3000, function () {
