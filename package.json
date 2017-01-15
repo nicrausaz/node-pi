@@ -16,7 +16,7 @@
     "url": "https://github.com/nicrausaz/node-pi/issues"
   },
   "homepage": "https://github.com/nicrausaz/node-pi#readme",
- "dependencies": {
-	"express": "^4.14.0"
-	}
+  "dependencies": {
+    "express": "^4.14.0"
+  }
 }

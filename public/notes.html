@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
 
@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>NC - Results</title>
-
+    <link rel="stylesheet" href="assets/form-mini.css">
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <title>NC - Results</title>
 
     <!-- Custom CSS -->
     <style>
@@ -37,7 +37,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Gestion notes</a>
+                <a class="navbar-brand" href="#">Gestion notes</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -57,37 +57,50 @@
 
     <!-- Page Content -->
     <div class="container">
-        <form class="form-inline">
-            <legend>Ajouter une note</legend>
+        <div class="form-mini-container">
 
-            <div class="form-group">
-                <label for="addSelectedBranch">Branche:</label>
-                <select class="form-control" name="addSelectedBranch" id="addSelectedBranch">
-                    <option value="">Maths</option>
-                    <option value="">Allemand</option>
-                    <option value="">...</option>
-                </select>
+            <h1>Ajouter une note</h1>
 
-                <label for="addSelectedNote">Note:</label>
-                <select class="form-control" name="addSelectedNote" id="addSelectedNote">
-                    <option value="1">1</option>
-                    <option value="1.5">1.5</option>
-                    <option value="2">2</option>
-                    <option value="2.5">2.5</option>
-                    <option value="3">3</option>
-                    <option value="3.5">3.5</option>
-                    <option value="4">4</option>
-                    <option value="4.5">4.5</option>
-                    <option value="5">5</option>
-                    <option value="5.5">5.5</option>
-                    <option value="6">6</option>
-                </select>
-                <button class="btn btn-primary " name="submit" type="submit">Ajouter</button>
-            </div>
-        </form>
+            <form class="form-mini" method="post" action="newNote">
 
-        <legend>Voir les notes</legend>
+                <div class="form-row">
+                    <label>
+                        <select name="newNote[branche]">
+                            <option value="notChosen">Choisir une branche</option>
+                            <option value="mathematiques">Mathématiques</option>
+                            <option value="physique">Physique</option>
+                            <option value="allemand">Allemand</option>
+                            <option value="anglais">Anglais</option>
+                            <option value="francais">Français</option>
+                            <option value="economie">Economie</option>
+                        </select>
+                    </label>
+                </div>
 
+                <div class="form-row">
+                    <label>
+                        <select name="newNote[note]">
+                            <option>Choisir une note</option>
+                            <option value="1">1</option>
+                            <option value="1.5">1.5</option>
+                            <option value="2">2</option>
+                            <option value="2.5">2.5</option>
+                            <option value="3">3</option>
+                            <option value="3.5">3.5</option>
+                            <option value="4">4</option>
+                            <option value="4.5">4.5</option>
+                            <option value="5">5</option>
+                            <option value="5.5">5.5</option>
+                            <option value="6">6</option>
+                         </select>
+                    </label>
+                </div>
+
+                <div class="form-row form-last-row">
+                    <button type="submit">Ajouter</button>
+                </div>
+            </form>
+        </div>
     </div>
     <!-- /.container -->
 
