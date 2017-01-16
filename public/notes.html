@@ -58,15 +58,19 @@
 
     <!-- Page Content -->
     <div class="container">
-        <div class="form-mini-container">
+        <div style="margin-bottom:50px;">
+            <button type="button" id="btnAddNoteDiv" class="btn btn-primary btn-block">Ajouter une note</button>
+            <button type="button" id="btnShowNotesDiv" class="btn btn-default btn-block">Afficher les notes</button>
+        </div>
+        <div id="addNoteDiv" hidden>
+            <div class="form-mini-container">
 
-            <h1>Ajouter une note</h1>
-
-            <form class="form-mini" method="get" action="newNote">
-                <div class="form-row">
-                    <label>
-                        <select name="branche">
-                            <option value="notChosen">Choisir une branche</option>
+                <h1>Ajouter une note</h1>
+                <form class="form-mini" method="get" action="newNote">
+                    <div class="form-row">
+                        <label>
+                        <select name="branche" required>
+                            <option value="">Choisir une branche</option>
                             <option value="mathematiques">Mathématiques</option>
                             <option value="physique">Physique</option>
                             <option value="allemand">Allemand</option>
@@ -75,12 +79,12 @@
                             <option value="economie">Economie</option>
                         </select>
                     </label>
-                </div>
+                    </div>
 
-                <div class="form-row">
-                    <label>
-                        <select name="note">
-                            <option value="notChosen">Choisir une note</option>
+                    <div class="form-row">
+                        <label>
+                        <select name="note" required>
+                            <option value="">Choisir une note</option>
                             <option value="1">1</option>
                             <option value="1.5">1.5</option>
                             <option value="2">2</option>
@@ -94,12 +98,14 @@
                             <option value="6">6</option>
                          </select>
                     </label>
-                </div>
+                    </div>
 
-                <div class="form-row form-last-row">
-                    <button type="submit" id="buttonAddNote">Ajouter</button>
-                </div>
-            </form>
+                    <div class="form-row form-last-row">
+                        <button type="submit" id="buttonAddNote">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+
         </div>
     </div>
 
