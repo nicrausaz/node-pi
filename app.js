@@ -15,8 +15,10 @@ MongoClient.connect(url, function (err, db) {
 
     var collection = db.collection('users')
 
-    var user1 = { name: 'test1', age: 42 }
-    var user2 = { name: 'test1', age: 42 }
+    var requestedObject = { name: 'test1', age: 42 }
+
+    dbAddObject(collection, requestedObject)
+    dbFindObjects(collection, requestedObject)
 
     db.close()
   }
@@ -42,6 +44,18 @@ function dbAddObject(collection, requestedObject) {
       console.log(err)
     } else {
       console.log("inserted")
+    }
+  })
+}
+
+function dbFindObjects(collection, requestedObject) {
+  collection.find(requestedObject).toArray(function (err, result) {
+    if (err) {
+      console.log(err);
+    } else if (result.length) {
+      console.log('Found:', result);
+    } else {
+      console.log('No document(s) found with defined "find" criteria!');
     }
   })
 }
