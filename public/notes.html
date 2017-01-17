@@ -59,16 +59,16 @@
     <!-- Page Content -->
     <div class="container">
         <div style="margin-bottom:50px;">
-            <button type="button" id="btnAddNoteDiv" class="btn btn-primary btn-block">Ajouter une note</button>
-            <button type="button" id="btnShowNotesDiv" class="btn btn-default btn-block">Afficher les notes</button>
-        </div>
-        <div id="addNoteDiv" hidden>
-            <div class="form-mini-container">
+<button type="button" id="btnAddNoteDiv" class="btn btn-primary btn-block">Ajouter une note</button>
+<button type="button" id="btnShowNotesDiv" class="btn btn-default btn-block">Afficher les notes</button>
+</div>
+<div id="addNoteDiv">
+    <div class="form-mini-container">
 
-                <h1>Ajouter une note</h1>
-                <form class="form-mini" method="get" action="newNote">
-                    <div class="form-row">
-                        <label>
+        <h1>Ajouter une note</h1>
+        <form class="form-mini" method="get" action="newNote">
+            <div class="form-row">
+                <label>
                         <select name="branche" required>
                             <option value="">Choisir une branche</option>
                             <option value="mathematiques">Mathématiques</option>
@@ -79,10 +79,10 @@
                             <option value="economie">Economie</option>
                         </select>
                     </label>
-                    </div>
+            </div>
 
-                    <div class="form-row">
-                        <label>
+            <div class="form-row">
+                <label>
                         <select name="note" required>
                             <option value="">Choisir une note</option>
                             <option value="1">1</option>
@@ -98,17 +98,18 @@
                             <option value="6">6</option>
                          </select>
                     </label>
-                    </div>
-
-                    <div class="form-row form-last-row">
-                        <button type="submit" id="buttonAddNote">Ajouter</button>
-                    </div>
-                </form>
             </div>
 
-        </div>
-        <div id="showNoteDiv"></div>
+            <div class="form-row form-last-row">
+                <button type="submit" id="buttonAddNote">Ajouter</button>
+            </div>
+        </form>
     </div>
+</div>
+<div id="showNoteDiv" hidden>
+    <h2>Ici seront listées les notes par branches avec possiblité de les trier, etc </h2>
+</div>
+</div>
 
 </body>
 
