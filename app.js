@@ -1,61 +1,45 @@
 var http = require('http')
 var express = require('express')
-var mongodb = require('mongodb')
+var mongoose = require('mongoose')
 
 var app = express()
-var MongoClient = mongodb.MongoClient
-var url = 'mongodb://nodePiServiceAccount:1234@192.168.1.121:27017/node-pi'
+//var User = require('schemas/User.js')
 
-MongoClient.connect(url, function (err, db) {
-  if (err) {
-    console.log('Unable to connect to the mongoDB server. Error:', err)
-  } else {
+mongoose.connect('mongodb://nodePiServiceAccount:1234@192.168.1.121:27017/node-pi')
 
-    console.log('Connection established to', url)
 
-    var collection = db.collection('users')
+// var db = mongoose.connection
+// db.on('error', console.error.bind(console, 'connection error:'))
+// db.once('open', function () {
 
-    var requestedObject = { name: 'test1', age: 42 }
+//   //model instance
+//   var newUser = new user({ username: 'test', password: "test1234" })
 
-    dbAddObject(collection, requestedObject)
-    dbFindObjects(collection, requestedObject)
+//   console.log(newUser.username)
+// });
 
-    db.close()
-  }
-});
 
 app.use(express.static('public'))
 
-app.get('/', function (req, res) {
+app.get('/login', function (req, res) {
 
-})
+  var username = req.body.username
+  var password = req.body.password
+  console.log(username + password)
+
+});
 
 app.get('/newNote', function (req, res) {
-  res.send('branche: ' + req.query['branche'] + ' note: ' + req.query['note'])
+
+  //var username = req.body.username
+  //var password = req.body.password
+
+});
+
+app.get('*', function (req, res) {
+  //create a 404 page
 });
 
 app.listen(3000, function () {
   console.log('App listening on port 3000!')
 })
-
-function dbAddObject(collection, requestedObject) {
-  collection.insert(requestedObject, function (err, result) {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log("inserted")
-    }
-  })
-}
-
-function dbFindObjects(collection, requestedObject) {
-  collection.find(requestedObject).toArray(function (err, result) {
-    if (err) {
-      console.log(err);
-    } else if (result.length) {
-      console.log('Found:', result);
-    } else {
-      console.log('No document(s) found with defined "find" criteria!');
-    }
-  })
-}
