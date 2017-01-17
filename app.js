@@ -31,13 +31,15 @@ app.use(express.static('public'))
 
 app.post('/login', urlencodedParser, function (req, res) {
 
-  // var username = req.body.username
-  // var password = req.body.password
+  var username = req.body.username
+  var password = req.body.password
+  console.log(username + password)
   console.log(req.body)
-  res.redirect('index.html')
+  //check credentials
+  res.redirect('main.html')
 });
 
-app.get('/newNote', function (req, res) {
+app.post('/newNote', urlencodedParser, function (req, res) {
 
   //var username = req.body.username
   //var password = req.body.password
