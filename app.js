@@ -40,6 +40,13 @@ app.post('/login', urlencodedParser, function (req, res) {
   //res.redirect('main.html')
 });
 
+app.get('/listNotes', urlencodedParser, function (req, res) {
+  Note.find({}, function (err, notes) {
+    if (err) throw err;
+    res.send(notes.toString());
+  });
+});
+
 app.post('/newNote', urlencodedParser, function (req, res) {
   var newNote = new Note({ semestre: 3, branche: req.body.branche, note: req.body.note })
   mongooseSaveNote(newNote);
