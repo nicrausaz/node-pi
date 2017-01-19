@@ -4,6 +4,7 @@ var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 
 var User = require('./models/User.js');
+var Note = require('./models/Note.js');
 
 // https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications
 
@@ -17,11 +18,9 @@ app.use(express.static('public'))
 
 mongoose.connect(dbUrl);
 
-var nicolasTest = new User({ username: 'test', password: "test1234", isAdmin: false })
+//var nicolasTest = new User({ username: 'test', password: "test1234", isAdmin: false })
 
-
-
-// on every save, add the date
+// on every save
 /*
 nicolasTest.pre('save', function (next) {
 
@@ -33,15 +32,6 @@ nicolasTest.pre('save', function (next) {
   next();
 });
 */
-/*
-nicolasTest.save(function (err) {
-  if (err) throw err;
-  console.log('User saved successfully!');
-});
-*/
-
-
-
 
 
 app.post('/login', urlencodedParser, function (req, res) {
@@ -52,8 +42,8 @@ app.post('/login', urlencodedParser, function (req, res) {
 });
 
 app.post('/newNote', urlencodedParser, function (req, res) {
-
-
+  var newNote = new Note({ semestre: 3, branche: req.body.branche, note: req.body.note })
+  mongooseSaveNote(newNote);
 });
 
 app.get('*', function (req, res) {
@@ -70,5 +60,12 @@ function mongooseFindLoginUser(reqBody) {
   User.findOne({ username: reqBody.username, password: reqBody.password }, function (err, user) {
 
     if (err) throw err;
+  });
+}
+
+function mongooseSaveNote(newNote) {
+  newNote.save(function (err) {
+    if (err) throw err;
+    console.log('Note saved');
   });
 }
