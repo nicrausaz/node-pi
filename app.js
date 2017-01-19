@@ -46,33 +46,29 @@ nicolasTest.save(function (err) {
 
 app.post('/login', urlencodedParser, function (req, res) {
 
-  var username = req.body.username
-  var password = req.body.password
-
-  mongooseFindLoginUser(nicolasTest, req.body)
-  console.log(username + password)
-  console.log(req.body)
-  //check credentials
-  res.redirect('main.html')
+  mongooseFindLoginUser(req.body)
+  //need to return in case of errors
+  //res.redirect('main.html')
 });
 
 app.post('/newNote', urlencodedParser, function (req, res) {
 
-  //var username = req.body.username
-  //var password = req.body.password
 
 });
 
 app.get('*', function (req, res) {
-  //create a 404 page
+
 });
 
 app.listen(3000, function () {
   console.log('App listening on port 3000!')
 })
 
-function mongooseFindLoginUser(nicolasTest, reqBody) {
-  User.find({ username: reqBody.username, password: reqBody.password }, function (err, user) {
+//check credentials
+function mongooseFindLoginUser(reqBody) {
+
+  User.findOne({ username: reqBody.username, password: reqBody.password }, function (err, user) {
+
     if (err) throw err;
   });
 }
