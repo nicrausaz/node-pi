@@ -33,7 +33,6 @@ nicolasTest.pre('save', function (next) {
 });
 */
 
-
 app.post('/login', urlencodedParser, function (req, res) {
 
   mongooseFindLoginUser(req.body)
@@ -44,6 +43,7 @@ app.post('/login', urlencodedParser, function (req, res) {
 app.post('/newNote', urlencodedParser, function (req, res) {
   var newNote = new Note({ semestre: 3, branche: req.body.branche, note: req.body.note })
   mongooseSaveNote(newNote);
+  res.redirect('notes.html')
 });
 
 app.get('*', function (req, res) {
@@ -58,7 +58,6 @@ app.listen(3000, function () {
 function mongooseFindLoginUser(reqBody) {
 
   User.findOne({ username: reqBody.username, password: reqBody.password }, function (err, user) {
-
     if (err) throw err;
   });
 }
@@ -66,6 +65,5 @@ function mongooseFindLoginUser(reqBody) {
 function mongooseSaveNote(newNote) {
   newNote.save(function (err) {
     if (err) throw err;
-    console.log('Note saved');
   });
 }
