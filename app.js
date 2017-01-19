@@ -5,17 +5,21 @@ var bodyParser = require('body-parser')
 
 var User = require('./models/User.js');
 
+// https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications
 
 var app = express()
 
 var jsonParser = bodyParser.json()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
-
 var dbUrl = "mongodb://nodePiServiceAccount:1234@192.168.1.121:27017/node-pi"
+
+app.use(express.static('public'))
 
 mongoose.connect(dbUrl);
 
 var nicolasTest = new User({ username: 'test', password: "test1234", isAdmin: false })
+
+
 
 // on every save, add the date
 /*
@@ -29,39 +33,14 @@ nicolasTest.pre('save', function (next) {
   next();
 });
 */
+/*
 nicolasTest.save(function (err) {
   if (err) throw err;
   console.log('User saved successfully!');
 });
+*/
 
 
-
-
-
-
-
-
-
-
-
-
-
-//var User = require('schemas/User.js')
-
-
-
-// var db = mongoose.connection
-// db.on('error', console.error.bind(console, 'connection error:'))
-// db.once('open', function () {
-
-//   //model instance
-//   var newUser = new user({ username: 'test', password: "test1234" })
-
-//   console.log(newUser.username)
-// });
-
-
-app.use(express.static('public'))
 
 
 
@@ -69,6 +48,8 @@ app.post('/login', urlencodedParser, function (req, res) {
 
   var username = req.body.username
   var password = req.body.password
+
+  mongooseFindLoginUser(nicolasTest, req.body)
   console.log(username + password)
   console.log(req.body)
   //check credentials
@@ -89,3 +70,11 @@ app.get('*', function (req, res) {
 app.listen(3000, function () {
   console.log('App listening on port 3000!')
 })
+
+function mongooseFindLoginUser(nicolasTest, reqbody) {
+  User.find({ username: reqbody.username }, function (err, user) {
+    if (err) throw err;
+
+    console.log(user);
+  });
+}
