@@ -71,10 +71,8 @@ app.listen(3000, function () {
   console.log('App listening on port 3000!')
 })
 
-function mongooseFindLoginUser(nicolasTest, reqbody) {
-  User.find({ username: reqbody.username }, function (err, user) {
+function mongooseFindLoginUser(nicolasTest, reqBody) {
+  User.find({ username: reqBody.username, password: reqBody.password }, function (err, user) {
     if (err) throw err;
-
-    console.log(user);
   });
 }
