@@ -1,7 +1,9 @@
 var http = require('http')
 var express = require('express')
-//var mongoose = require('mongoose')
+var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
+
+var User = require('./models/User.js');
 
 
 var app = express()
@@ -9,9 +11,43 @@ var app = express()
 var jsonParser = bodyParser.json()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
+var dbUrl = "mongodb://nodePiServiceAccount:1234@192.168.1.121:27017/node-pi"
+
+mongoose.connect(dbUrl);
+
+var nicolasTest = new User({ username: 'test', password: "test1234", isAdmin: false })
+
+// on every save, add the date
+/*
+nicolasTest.pre('save', function (next) {
+
+  //this.updated_at = currentDate;
+
+  if (!this.isAdmin)
+    console.log("you are not admin")
+
+  next();
+});
+*/
+nicolasTest.save(function (err) {
+  if (err) throw err;
+  console.log('User saved successfully!');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 //var User = require('schemas/User.js')
 
-//mongoose.connect('mongodb://nodePiServiceAccount:1234@192.168.1.121:27017/node-pi')
 
 
 // var db = mongoose.connection
