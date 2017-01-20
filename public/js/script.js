@@ -24,3 +24,12 @@ function switchButtons() {
         $('#btnAddNoteDiv').removeClass("btn-primary").addClass("btn-default");
     });
 }
+
+function newPopup() {
+    $(function () {
+        new PNotify({
+            title: 'Regular Notice',
+            text: 'Check me out! I\'m a notice.'
+        });
+    });
+}
