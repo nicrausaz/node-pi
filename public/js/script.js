@@ -1,11 +1,7 @@
 $(document).ready(function () {
     showHideDivs();
     switchButtons();
-    $('#notesTable').dynatable({
-        table: {
-            defaultColumnIdStyle: 'trimDash'
-        }
-    });
+    initDynatable();
 });
 
 function showHideDivs() {
@@ -36,5 +32,24 @@ function newPopup() {
             title: 'Title',
             text: 'Description'
         });
+    });
+}
+
+function initDynatable() {
+    $('#notesTable').dynatable({
+        features: {
+            recordCount: false
+        },
+        inputs: {
+            queries: $('#max-price')
+        }
+        /*
+        dataset: {
+            ajax: true,
+            ajaxUrl: '/dynatable-ajax.json',
+            ajaxOnLoad: true,
+            records: []
+        }
+        */
     });
 }
