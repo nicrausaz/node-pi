@@ -1,6 +1,11 @@
 $(document).ready(function () {
     showHideDivs();
     switchButtons();
+    $('#notesTable').dynatable({
+        table: {
+            defaultColumnIdStyle: 'trimDash'
+        }
+    });
 });
 
 function showHideDivs() {
@@ -28,8 +33,8 @@ function switchButtons() {
 function newPopup() {
     $(function () {
         new PNotify({
-            title: 'Regular Notice',
-            text: 'Check me out! I\'m a notice.'
+            title: 'Title',
+            text: 'Description'
         });
     });
 }
